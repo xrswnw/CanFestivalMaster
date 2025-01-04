@@ -156,7 +156,7 @@
                     <item>g_nRfu64</item>
                     <item>masterNormal_Data</item>
                     <item>g_sCanFrame</item>
-                    <item></item>
+                    <item />
                 </expressions>
                 <col-names>
                     <item>Expression</item>
@@ -1043,7 +1043,7 @@
                     <item>line</item>
                     <item>d</item>
                     <item>buf</item>
-                    <item></item>
+                    <item />
                 </expressions>
                 <col-names>
                     <item>Expression</item>

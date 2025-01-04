@@ -25,16 +25,29 @@ void Tim_InitInterface()
 
 }
 
+static TIMEVAL lastTime = 0;
+
 /*更新当前Tick*/
 void setTimer(TIMEVAL value)
 {
-	TIM_PORT->ARR =  value;			//更新重装载值，此定时器调度专用！！！！！！！！！！！！！！！！！
+   /* TIM_PORT->ARR =  value;			//更新重装载值，此定时器调度专用！！！！！！！！！！！！！！！！！
+  */
+  	u16 timer = 0;
+
+	timer = TIM_PORT->CNT;					
+	TIM_PORT->ARR = timer + value;
 }
 
 /*获取当前Tick*/
 TIMEVAL getElapsedTime(void)
 {
-	return TIM_PORT->CNT;
+	/*return TIM_PORT->CNT;*/
+  
+    u16 timer = 0;
+    
+    timer = TIM_PORT->CNT;	 
+	timer = timer - lastTime;
+	return timer;
 }
 
 /*CanFestival调度*/
@@ -42,7 +55,8 @@ void TIM1_UP_IRQHandler(void)
 {
     if(TIM_GetITStatus(TIM_PORT, TIM_IT_Update)!= RESET)
     {
+        lastTime = TIM_PORT->CNT;
+        TimeDispatch();		
         TIM_ClearITPendingBit(TIM_PORT, TIM_IT_Update);
-		TimeDispatch();					
     }
 }

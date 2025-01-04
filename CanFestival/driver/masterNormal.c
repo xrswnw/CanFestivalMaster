@@ -227,7 +227,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 /* index 0x1401 :   Receive PDO 2 Parameter. */
                     UNS8 masterNormal_highestSubIndex_obj1401 = 6; /* number of subindex - 1*/
-                    UNS32 masterNormal_obj1401_COB_ID_used_by_PDO = 0x182;	/* 386 */
+                    UNS32 masterNormal_obj1401_COB_ID_used_by_PDO = 0x281;	/* 386 */
                     UNS8 masterNormal_obj1401_Transmission_Type = 0x0;	/* 0 */
                     UNS16 masterNormal_obj1401_Inhibit_Time = 0x0;	/* 0 */
                     UNS8 masterNormal_obj1401_Compatibility_Entry = 0x0;	/* 0 */
@@ -246,7 +246,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 /* index 0x1402 :   Receive PDO 3 Parameter. */
                     UNS8 masterNormal_highestSubIndex_obj1402 = 6; /* number of subindex - 1*/
-                    UNS32 masterNormal_obj1402_COB_ID_used_by_PDO = 0x183;	/* 387 */
+                    UNS32 masterNormal_obj1402_COB_ID_used_by_PDO = 0x381;	/* 387 */
                     UNS8 masterNormal_obj1402_Transmission_Type = 0x0;	/* 0 */
                     UNS16 masterNormal_obj1402_Inhibit_Time = 0x0;	/* 0 */
                     UNS8 masterNormal_obj1402_Compatibility_Entry = 0x0;	/* 0 */

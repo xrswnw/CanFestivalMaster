@@ -7,9 +7,9 @@
 #define SDO_DYNAMIC_BUFFER_ALLOCATION									//动态内存开关
 #define SDO_DYNAMIC_BUFFER_ALLOCATION_SIZE 	(1024)
 #define SDO_MAX_LENGTH_TRANSFER				32
-#define SDO_MAX_SIMULTANEOUS_TRANSFERS 		5					//最大同时传输的SDO数目
+#define SDO_MAX_SIMULTANEOUS_TRANSFERS 		3					//最大同时传输的SDO数目
 #define NMT_MAX_NODE_ID						127					//支持保存的节点状态数据，最大支持128个节点数据
-#define SDO_TIMEOUT_MS						80000U
+#define SDO_TIMEOUT_MS						60
 #define MAX_NB_TIMER						8
 
 #define SDO_BLOCK_SIZE						16   				

@@ -183,13 +183,12 @@ void Sys_LedTask(void)
         params[3] = rand() % 0x20;
         if(writeNetworkDictCallBack(&masterNormal_Data, 0x01, 0x2003, 0x00, 4, uint32, params, Device_SDOCallback, 0) == 0)//( readNetworkDictCallback(&masterNormal_Data, 1, 0x2001, 0x00, 1,Device_SDOCallback, 0))
         {//修正
-            Sys_Delayms(10);                //加入一个延时，否则服务器卡死
-            params[0] = 0x01;
-        }
+            Sys_Delayms(2);                //加入一个延时，否则服务器卡死
+        }//sdo做队列收发处理，处理好超时逻辑，同时考虑mcu性能
         else
         {
-            Sys_Delayms(10);            //加入一个延时，否则服务器卡死
-            params[0] = 0x02;
+            Sys_Delayms(20);            
+            resetSDO(&masterNormal_Data);       //复位SDO,正常情况下不会进入，进入则出现问题
         }
 	}
 }

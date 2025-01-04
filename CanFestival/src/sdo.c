@@ -163,7 +163,7 @@ void SDOTimeoutAlarm(CO_Data* d, UNS32 id)
 	/*Reset the line if (whoami == SDO_SERVER) or the callback did not close the line.
 	  Otherwise this sdo transfer would never be closed. */
 	if(d->transfers[id].abortCode == SDOABT_TIMED_OUT) 
-		resetSDOline(d, (UNS8)id);
+		resetSDOline(d, (UNS8)id);                  //超时。考虑重发。
 }
 
 #define StopSDO_TIMER(id) \
@@ -548,10 +548,10 @@ UNS8 getSDOlineOnUse (CO_Data* d, UNS8 CliServNbr, UNS8 whoami, UNS8 *line)
 				(d->transfers[i].CliServNbr == CliServNbr) &&
 				(d->transfers[i].whoami == whoami) )
         {          //修正，需五个SDO均占用再判定失败？？？？？
-			// if (line) *line = i;                      //旧代码               
-			//return 0;
+			 if (line) *line = i;                      //旧代码               
+			return 0;
           
-          memset(d->transfers + i , 0, sizeof(s_transfer));
+         // memset(d->transfers + i , 0, sizeof(s_transfer));       //接收完成再清除，如果有一帧接收失败，将卡死？？
            /*if(i == (SDO_MAX_SIMULTANEOUS_TRANSFERS - 1))
             {
                 return 0;
@@ -564,6 +564,8 @@ UNS8 getSDOlineOnUse (CO_Data* d, UNS8 CliServNbr, UNS8 whoami, UNS8 *line)
 	}
 	return 0xFF;
 }
+
+
 
 /*!
  **
@@ -1307,7 +1309,8 @@ UNS8 proceedSDO (CO_Data* d, Message *m)
 					StopSDO_TIMER(line)
 						d->transfers[line].state = SDO_FINISHED;
 					if(d->transfers[line].Callback) (*d->transfers[line].Callback)(d,nodeId);
-					return 0x00;
+                    resetSDOline(d, line);//resetSDO(d);                //完成之后复位SDO
+                    return 0x00;
 				}
 				if (nbBytes > 7) {
 					/* more than one request to send */
